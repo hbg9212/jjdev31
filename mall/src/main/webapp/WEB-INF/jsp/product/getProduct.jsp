@@ -24,6 +24,7 @@
 		</div>
 		<div class="col-sm-10" >
 			<div>
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/product/productList?">글목록</a>
 				<table class="table table-striped">
 			        <thead>
 			            <tr>
