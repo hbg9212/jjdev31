@@ -47,7 +47,7 @@
 		        <tbody>
 		            <c:forEach var="p" items="${list}">
 		                <tr>
-		                    <td><a href="${pageContext.request.contextPath}/product/getProduct?productNo=${p.productCommonNo}">${p.productCommonName}</a></td>
+		                    <td><a href="${pageContext.request.contextPath}/product/getProduct?productCommonNo=${p.productCommonNo}&searchWord=${searchWord}">${p.productCommonName}</a></td>
 		                    <td>${p.productCommonPrice}</td>
 		                    <td>${p.productCommonDate}</td>
 		                </tr>
@@ -57,7 +57,7 @@
 		    <div>
 		    	<form id="searchForm" action="${pageContext.request.contextPath}/product/productList" method="get">
 		    		<input type="hidden" name="categoryNo" value="${categoryNo}">
-		    		productName 검색어 : <input type="text" name="searchWord">
+		    		productName 검색어 : <input type="text" name="searchWord" value="${searchWord}">
 		    		<button type="button" id="searchbtn">검색</button>
 		    	</form>
 		    </div>

@@ -24,12 +24,11 @@ public class ProductService {
 	public Map<String, Object> getProductCommonList(Map<String, Object> map) {
 		final int ROW_PER_PAGE = 10;
 		int currentPage = (int)map.get("currentPage");
-		int categoryNo = (int)map.get("categoryNo");
 		final int BEGIN_ROW = (currentPage-1)*ROW_PER_PAGE;
 		map.put("beginRow", BEGIN_ROW);
 		map.put("rowPerPage", ROW_PER_PAGE);
 		List<ProductCommon> list = productCommonMapper.selectProductListByCategoryNo(map);
-		final int PRODUCT_COUNT = productCommonMapper.selectProductCommonCount(categoryNo);
+		final int PRODUCT_COUNT = productCommonMapper.selectProductCommonCount(map);
 		int currentTenPage = currentPage/10;
 		if(currentPage%10 == 0) {
 			currentTenPage--;
@@ -60,6 +59,10 @@ public class ProductService {
 	public Map<String, Object> getProduct(int productCommonNo) {
 		List<Category> categoryList = categoryMapper.selectCategoryList();
 		ProductCommon productCommon = productCommonMapper.selectProductByProductCommonNo(productCommonNo);
+		if(productCommon == null) {
+			productCommon = new ProductCommon();
+		}
+		System.out.println(productCommon);
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		returnMap.put("categoryList", categoryList);
 		returnMap.put("productCommon", productCommon);

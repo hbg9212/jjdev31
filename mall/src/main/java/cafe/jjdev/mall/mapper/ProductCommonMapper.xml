@@ -51,17 +51,29 @@
 				, product_common_description AS productCommonDescription
 				, product_common_date AS productCommonDate
 			FROM product_common 
-			WHERE category_no  = #{categoryNo}
-			<if test='searchWord != "%%"'>
-    			AND product_common_name LIKE #{searchWord}
-    		</if>
+			<if test="categoryNo != 0">
+				WHERE category_no  = #{categoryNo}
+				<if test='searchWord != "%%"'>
+	    			AND product_common_name LIKE #{searchWord}
+	    		</if>
+			</if>
+			<if test="categoryNo == 0">
+				<if test='searchWord != "%%"'>
+					WHERE product_common_name LIKE #{searchWord}
+				</if>
+			</if>
+			ORDER BY product_common_date DESC
 			LIMIT #{beginRow}, #{rowPerPage}
 	</select>
 	
-	<select id="selectProductCommonCount" resultType="int">
+	<select id="selectProductCommonCount" 
+			parameterType="java.util.Map"
+			resultType="int">
 		SELECT COUNT(*) 
 		FROM product_common
+		<if test="categoryNo != 0">
 		WHERE category_no = #{categoryNo}
+		</if>
 	</select>
 </mapper>
 

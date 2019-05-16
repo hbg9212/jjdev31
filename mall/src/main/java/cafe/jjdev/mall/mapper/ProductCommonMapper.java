@@ -11,5 +11,5 @@ import cafe.jjdev.mall.vo.ProductCommon;
 public interface ProductCommonMapper {
 	public List<ProductCommon> selectProductListByCategoryNo(Map<String, Object> map);
 	public ProductCommon selectProductByProductCommonNo(int productCommonNo);
-	public int selectProductCommonCount(int categoryno);
+	public int selectProductCommonCount(Map<String, Object> map);
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cafe.jjdev.mall.service.ProductService;
-import cafe.jjdev.mall.vo.ProductCommon;
 
 @Controller
 public class ProductController {
@@ -35,6 +34,7 @@ public class ProductController {
 		model.addAttribute("productCount", map.get("productCount"));
 		model.addAttribute("category", map.get("categoryList"));
 		model.addAttribute("categoryNo", categoryNo);
+		model.addAttribute("searchWord", searchWord);
 		return "/product/productList";
 	}
 	
